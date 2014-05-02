@@ -29,7 +29,7 @@ public class LogActivity extends ListActivity implements SensorEventListener{
     // Fields
     // ===========================================================
     private static final String TAG = "LogActivity";
-    private static final float SHAKE_THRESHOLD_GRAVITY = 2.3F;
+    private static final float SHAKE_THRESHOLD_GRAVITY = 1.2f;
     private static final int SHAKE_SLOP_TIME_MS = 500;
 
     private Button feedingBtn;
@@ -65,10 +65,8 @@ public class LogActivity extends ListActivity implements SensorEventListener{
         fragmentContainer = (LinearLayout)findViewById(R.id.fragmentContainer);
         listContainer = (LinearLayout)findViewById(R.id.listContainer);
         buttonPanel = (LinearLayout)findViewById(R.id.buttonPanel);
-
-        assignButtons(); // Assigning buttons and OnClickListeners
-
         dbClient = new DBClient(this);
+        fragmentManager = getFragmentManager();
 
         // Fetching log events from db
         logEventList = new ArrayList<LogEvent>(dbClient.getLogEvents());
@@ -82,17 +80,42 @@ public class LogActivity extends ListActivity implements SensorEventListener{
             }
         });
         attachAdapter(); // Attaching list adapter to listView so data can populate from db
-
-        fragmentManager = getFragmentManager();
-
+        assignButtons(); // Assigning buttons and OnClickListeners
         startSensors();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.i(TAG, "Disconnecting SensorEventListener");
+        sensorManager.unregisterListener(this);
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.i(TAG, "Connecting SensorEventListener");
+        startSensors();
+        super.onResume();
+    }
+
+    @Override
+    public void onBackPressed() {
+        try{
+            fragmentManager.getBackStackEntryAt(0);
+            fragmentManager.popBackStack(1, 0);
+            fragmentContainer.setVisibility(View.GONE);
+            listContainer.setVisibility(View.VISIBLE);
+            buttonPanel.setVisibility(View.VISIBLE);
+        }catch (Exception e){
+            Log.w(TAG, "Fragment switching generated an exception as expected");
+        }
+        super.onBackPressed();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.log_actions, menu);
-
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -105,20 +128,6 @@ public class LogActivity extends ListActivity implements SensorEventListener{
                 return true;
         }
         return false;
-    }
-
-    @Override
-    public void onBackPressed() {
-        try{
-            fragmentManager.getBackStackEntryAt(0);
-            fragmentManager.popBackStack(1, 0);
-            fragmentContainer.setVisibility(View.GONE);
-            listContainer.setVisibility(View.VISIBLE);
-            buttonPanel.setVisibility(View.VISIBLE);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        super.onBackPressed();
     }
 
     @Override
@@ -138,7 +147,6 @@ public class LogActivity extends ListActivity implements SensorEventListener{
             final long now = System.currentTimeMillis();
             // ignore shake events too close to each other (500ms)
             if (shakeTimestamp + SHAKE_SLOP_TIME_MS > now) {
-                Toast.makeText(this, "Multiple shakes detected, cooldown 500ms", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -149,7 +157,6 @@ public class LogActivity extends ListActivity implements SensorEventListener{
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
     }
 
     // ===========================================================
@@ -216,22 +223,6 @@ public class LogActivity extends ListActivity implements SensorEventListener{
     private void attachAdapter() {
         listAdapter = new LogEventListAdapter(logEventList, this);
         listView.setAdapter(listAdapter);
-    }
-
-    private void feedingBtnClicked() {
-
-    }
-
-    private void sleepingBtnClicked() {
-
-    }
-
-    private void diaperBtnClicked() {
-
-    }
-
-    private void noteBtnClicked() {
-
     }
 
     public static void saveNote(String note) {

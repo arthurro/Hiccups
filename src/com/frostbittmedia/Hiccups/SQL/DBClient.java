@@ -40,14 +40,13 @@ public class DBClient extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        Log.v(TAG, "Creating table");
+        Log.i(TAG, "Creating table");
 
         final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "("
                 + COLUMN_EVENT + " VARCHAR(30) NOT NULL,"
                 + COLUMN_DETAIL + " VARCHAR(255),"
                 + COLUMN_DATETIME + " DATETIME NOT NULL"
                 + ")";
-
         try{
             sqLiteDatabase.execSQL(CREATE_TABLE);
         }catch (SQLException e){
@@ -57,7 +56,7 @@ public class DBClient extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
-        Log.v(TAG, "New version, drop / create");
+        Log.i(TAG, "New version, drop / create");
 
         try{
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
@@ -116,6 +115,7 @@ public class DBClient extends SQLiteOpenHelper{
         return logEventList;
     }
 
+    // The single purpose of this is to change the sleep button image
     public String getLastSleepEvent(){
         Log.i(TAG, "Fetching last sleep event");
 
@@ -124,6 +124,7 @@ public class DBClient extends SQLiteOpenHelper{
                 "  from log\n" +
                 "  where event IN(\"Woke up\", \"Went to sleep\")\n" +
                 ")";
+
         String result = "";
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -168,12 +169,14 @@ public class DBClient extends SQLiteOpenHelper{
     }
 
     public void deleteTableRows(){
+        Log.i(TAG, "Dropping table");
         SQLiteDatabase db = this.getReadableDatabase();
         db.delete(TABLE_NAME, null, null);
     }
 
-    // To delete single row, not in use
+    // To delete single row
     public void deleteTableRow(LogEvent event){
+        Log.i(TAG, "Deleting single row");
         SQLiteDatabase db = this.getReadableDatabase();
         db.delete(TABLE_NAME,COLUMN_EVENT + "=\"" + event.getEvent() + "\" and " + COLUMN_DATETIME + "=\"" + event.getDateTime() + "\"", null);
     }
