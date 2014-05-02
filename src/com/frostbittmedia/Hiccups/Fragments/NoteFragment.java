@@ -14,9 +14,7 @@ import android.widget.Toast;
 import com.frostbittmedia.Hiccups.Activities.LogActivity;
 import com.frostbittmedia.Hiccups.R;
 
-/**
- * Created by alfaomega on 4/27/14.
- */
+
 public class NoteFragment extends Fragment {
 
     private EditText noteText;

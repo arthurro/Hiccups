@@ -1,7 +1,5 @@
 package com.frostbittmedia.Hiccups.Objects;
 
-import java.util.Date;
-
 public class LogEvent {
 
     // ===========================================================

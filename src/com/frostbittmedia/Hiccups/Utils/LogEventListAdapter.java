@@ -27,7 +27,6 @@ public class LogEventListAdapter extends BaseAdapter {
 
     private List<LogEvent> logEvents;
     private Context context;
-    private int eventCount = 0;
 
     // ===========================================================
     // Constructors

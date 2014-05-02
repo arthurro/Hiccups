@@ -3,9 +3,6 @@ package com.frostbittmedia.Hiccups.Utils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by alfaomega on 4/26/14.
- */
 public class Utils {
 
     public static String getDateTimeString(){
