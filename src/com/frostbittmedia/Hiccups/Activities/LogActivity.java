@@ -68,6 +68,7 @@ public class LogActivity extends ListActivity implements SensorEventListener{
 
         // Fetching log events from db
         logEventList = new ArrayList<LogEvent>(dbClient.getLogEvents());
+
         listView = getListView();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -78,6 +79,7 @@ public class LogActivity extends ListActivity implements SensorEventListener{
             }
         });
         attachAdapter(); // Attaching list adapter to listView so data can populate from db
+
         assignButtons(); // Assigning buttons and OnClickListeners
         startSensors();
     }
@@ -98,15 +100,15 @@ public class LogActivity extends ListActivity implements SensorEventListener{
 
     @Override
     public void onBackPressed() {
-        try{
+        if (fragmentManager.getBackStackEntryCount() == 0)
+            moveTaskToBack(true); // Halting application, by moving activity in the back of the activity stack
+        else {
             fragmentManager.getBackStackEntryAt(0);
             fragmentManager.popBackStack(1, 0);
             fragmentContainer.setVisibility(View.GONE);
             listContainer.setVisibility(View.VISIBLE);
             buttonPanel.setVisibility(View.VISIBLE);
-        }catch (Exception e){
-            Log.w(TAG, "Fragment switching generated an exception as expected");
-        }
+            }
         super.onBackPressed();
     }
 
