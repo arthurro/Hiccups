@@ -29,8 +29,6 @@ public class LogActivity extends ListActivity implements SensorEventListener{
     // Fields
     // ===========================================================
     private static final String TAG = "LogActivity";
-    private static final float SHAKE_THRESHOLD_GRAVITY = 1.2f;
-    private static final int SHAKE_SLOP_TIME_MS = 500;
 
     private Button feedingBtn;
     private Button sleepingBtn;
@@ -132,6 +130,9 @@ public class LogActivity extends ListActivity implements SensorEventListener{
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        final float SHAKE_THRESHOLD_GRAVITY = 1.2f; // "Shake sensitivity" - Nexus 5 = 2.3f
+        final int SHAKE_SLOP_TIME_MS = 500;
+
         float x = event.values[0];
         float y = event.values[1];
         float z = event.values[2];
