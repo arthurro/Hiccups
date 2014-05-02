@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Layout for LogActivity -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/khaki">
+
+    <!-- Fragment container -->
+    <LinearLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_weight="3"
+            android:visibility="gone">
+    </LinearLayout>
+
+    <!-- List view container -->
+        <LinearLayout
+                android:id="@+id/listContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_weight="3"
+                android:visibility="visible">
+            <ListView
+                    android:id="@id/android:list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:divider="@color/dark_khaki"
+                    android:dividerHeight="1dp">
+            </ListView>
+        </LinearLayout>
+
+    <!-- Buttons container -->
+        <LinearLayout
+                android:id="@+id/buttonPanel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp">
+            <Button
+                    android:id="@+id/noteBtn"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/note_button"/>
+            <Button
+                    android:id="@+id/diaperBtn"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/diaper_button"/>
+            <Button
+                    android:id="@+id/sleepBtn"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/sleeping_button"/>
+            <Button
+                    android:id="@+id/feedingBtn"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/feeding_button"/>
+        </LinearLayout>
+</LinearLayout>
+

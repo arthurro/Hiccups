@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Layout for DetailFragment, displaying single log entry details -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:padding="5dp">
+    <ImageView
+            android:id="@+id/fragmentLogEntryDetailImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@color/gray"/>
+
+    <!-- Log event text container -->
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:layout_weight="3"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+        <TextView
+                android:id="@+id/fragmentLogEntryEventText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textColor="@color/gray"
+                android:textSize="24sp"
+                android:text="Event"/>
+
+        <!-- Datetime container -->
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/fragmentLogEntryEventDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:gravity="bottom"
+                    android:textColor="@color/baby_blue"
+                    android:textSize="16sp"
+                    android:text="Date"/>
+            <TextView
+                    android:id="@+id/fragmentLogEntryEventTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:textColor="@color/baby_blue"
+                    android:textSize="16sp"
+                    android:text="Time"/>
+        </LinearLayout>
+        <TextView
+                android:id="@+id/fragmentLogEntryEventDetailText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/baby_blue"
+                android:textSize="18sp"
+                android:text="Details"/>
+    </LinearLayout>
+    <Button
+            android:id="@+id/fragmentDeleteLogEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detail_fragment_delete_button"/>
+</LinearLayout>

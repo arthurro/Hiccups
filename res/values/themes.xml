@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Application theme -->
+    <style name="HiccupsTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/HiccupsActionBar</item>
+        <item name="android:popupMenuStyle">@style/HiccupsActionBarPopUp</item>
+    </style>
+
+    <!-- ActionBar-->
+    <style name="HiccupsActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/actionbar_background</item>
+        <item name="android:titleTextStyle">@style/HiccupsActionBarTitleText</item>
+    </style>
+
+    <!-- ActionBar title text -->
+    <style name="HiccupsActionBarTitleText" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <!-- ActionBar PopUp -->
+    <style name="HiccupsActionBarPopUp" parent="android:Theme.Holo.Light">
+        <item name="android:popupBackground">@drawable/actionbar_popup_background</item>
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">5dp</item>
+    </style>
+
+</resources>

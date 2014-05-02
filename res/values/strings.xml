@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">Hiccups</string>
+
+    <!-- Activities -->
+    <string name="log_activity_title">Log</string>
+
+    <!-- LogActivity -->
+    <string name="actionbar_popup_clear">Clear log</string>
+
+    <!-- NotFragment -->
+    <string name="note_fragment_text_hint">Note</string>
+    <string name="note_fragment_save_button">Save</string>
+    <string name="note_fragment_exit_button">Exit</string>
+
+    <!-- DetailFragment -->
+    <string name="detail_fragment_delete_button">Delete</string>
+
+</resources>

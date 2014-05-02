@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="baby_blue">#347A84</color>
+    <color name="gray">#4D5E5E</color>
+    <color name="dark_gray">#2E3D45</color>
+    <color name="marine">#192330</color>
+    <color name="red">#A32623</color>
+    <color name="light_red">#CE8383</color>
+    <color name="khaki">#DBD7C1</color>
+    <color name="dark_khaki">#D9D1AE</color>
+    <color name="light_green">#83CE83</color>
+</resources>
